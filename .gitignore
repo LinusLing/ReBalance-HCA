@@ -1,0 +1,52 @@
+# compilation and distribution
+__pycache__
+_ext
+*.pyc
+*.so
+*.egg-info/
+build/
+dist/
+*.h5
+
+# ipython/jupyter notebooks
+#*.ipynb
+**/.ipynb_checkpoints/
+
+# checkpoint
+checkpoints/
+logs/
+wandb/
+
+# dataset
+!/datasets/
+/datasets/**
+!/datasets/vg/**
+!/datasets/VG150/**
+!/datasets/psg/obj_classes.txt
+*.jpeg
+*.npy
+
+# Editor temporaries
+*.swn
+*.swo
+*.swp
+*~
+
+# Pycharm editor settings
+.idea
+
+# vscode editor settings
+.vscode
+
+# MacOS
+.DS_Store
+
+# egg-info
+*.egg-info
+
+# others
+analysis/
+*SLURM.sh
+
+# add the datasets/VG150/zeroshot_triplet.pytorch file as exception
+!/datasets/VG150/zeroshot_triplet.pytorch
