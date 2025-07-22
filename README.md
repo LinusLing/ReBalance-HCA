@@ -1,4 +1,4 @@
-# ReBalance-HCA
+# Enhancing scene graph generation via Hybrid Co-Attention and Predicate Reweighting for long-tail robustness (ReBalance-HCA)
 
 This is the PyTorch implementation for **ReBalance-HCA** proposed in the paper **Enhancing scene graph generation via Hybrid Co-Attention and Predicate Reweighting for long-tail robustness**. The scene graph generation task aims to generate a set of triplet <subject, predicate, object> and construct a graph structure for an image.
 
