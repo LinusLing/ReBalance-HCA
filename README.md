@@ -81,6 +81,31 @@ The system requires proper PYTHONPATH configuration including APEX and COCO API 
 * **Hardware Requirements**: NVIDIA GPUs with CUDA support
 * **Distributed Training**: Multi-GPU training support via DistributedDataParallel (optional)
 
+### Data Preprocessing Steps
+#### Image Preprocessing Pipeline:
+The system applies different preprocessing transforms for training and evaluation phases:
+
+#### Training Transforms:
+* Color jittering (brightness, contrast, saturation, hue adjustments)
+* Random horizontal flipping (50% probability)
+* Random vertical flipping (configurable probability)
+* Image resizing with aspect ratio preservation
+* Tensor conversion and normalization [build.py:36-45](https://github.com/LinusLing/ReBalance-HCA/tree/main/maskrcnn_benchmark/data/transforms/build.py#L36-L45)
+
+#### Evaluation Transforms:
+* No augmentation applied (color jitter and flipping disabled)
+* Only resizing, tensor conversion, and normalization applied [build.py:15-23](https://github.com/LinusLing/ReBalance-HCA/tree/main/maskrcnn_benchmark/data/transforms/build.py#L15-L23)
+
+#### Normalization Parameters:
+* Pixel mean: [102.9801, 115.9465, 122.7717]
+* Pixel standard deviation: [1.0, 1.0, 1.0]
+* BGR255 format conversion for compatibility [defaults.py:57-61](https://github.com/LinusLing/ReBalance-HCA/tree/main/maskrcnn_benchmark/config/defaults.py#L57-L61)
+
+#### Dataset Format Requirements:
+* PASCAL VOC dataset supported in original format
+* Other datasets require conversion to COCO JSON format
+* Symlink-based dataset organization for efficient access
+
 ### Evaluation Method
 The system supports comprehensive evaluation across three main tasks:
 
@@ -93,6 +118,13 @@ The system supports comprehensive evaluation across three main tasks:
 * Warmup learning rate scheduling
 * Gradient clipping for training stability
 * Validation-based early stopping
+
+## Conclusions
+### Limitations
+* Requires CUDA-compatible GPUs with sufficient memory for batch processing
+* Distributed training setup requires specific network configurations and port management
+* Two-stage training process increases computational complexity and training time
+* Hybrid Co-Attention mechanism requires careful hyperparameter tuning
 
 ## License & Contribution Guidelines
 This implementation is based on [Facebook's MaskRCNN-Benchmark framework](https://github.com/facebookresearch/maskrcnn-benchmark). Users should refer to the original licensing terms and follow standard open-source contribution practices. 
