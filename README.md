@@ -121,10 +121,15 @@ The system supports comprehensive evaluation across three main tasks:
 
 ## Conclusions
 ### Limitations
-* Requires CUDA-compatible GPUs with sufficient memory for batch processing
-* Distributed training setup requires specific network configurations and port management
-* Two-stage training process increases computational complexity and training time
-* Hybrid Co-Attention mechanism requires careful hyperparameter tuning
+
+* **Computational Resources Trade-off**  
+   While the Hybrid Co-Attention delivers enhanced feature fusion, its iterative refinement process involves moderately increased training time. We recommend leveraging multi-GPU configurations where feasible to optimize throughput.
+
+* **Novel Predicate Handling**  
+   The current framework focuses primarily on rebalancing existing predicate distributions. Accommodating entirely new predicates with minimal examples remains an active research direction – users exploring few-shot scenarios may consider supplementary augmentation techniques as interim solutions.
+
+* **Domain Adaptation Scope**  
+   For scenarios with significant domain shifts between datasets, note that our current fine-tuning protocol adjusts only the final model layer. This lightweight adaptation strategy favors efficiency, though exceptionally divergent domains might warrant additional network adjustments.
 
 ## License & Contribution Guidelines
 This implementation is based on [Facebook's MaskRCNN-Benchmark framework](https://github.com/facebookresearch/maskrcnn-benchmark). Users should refer to the original licensing terms and follow standard open-source contribution practices. 
